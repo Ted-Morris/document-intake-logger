@@ -1,0 +1,4 @@
+Document Intake Logger Sample
+This is the first sample document for Week 1 Day 2.
+The goal is to practice reading a plain text file with Python.
+The script will count lines, words, and characters.

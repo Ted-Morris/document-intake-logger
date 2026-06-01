@@ -39,14 +39,19 @@ def print_summary(summary):
     print(f"Word count: {summary['word_count']}")
     print(f"Character count: {summary['character_count']}")
 
+
+def get_document_path(project_root, args):
+    if len(args) > 1:
+        return project_root / args[1]
+
+    return project_root / "data" / "sample_document.txt"
+
+
 def main():
     script_path = Path(__file__).resolve()
     project_root = script_path.parent.parent
 
-    if len(sys.argv) > 1:
-        file_path = project_root / sys.argv[1]
-    else:
-        file_path = project_root / "data" / "sample_document.txt"
+    file_path = get_document_path(project_root, sys.argv)
 
     if not file_path.exists():
         print("Document Intake Summary")

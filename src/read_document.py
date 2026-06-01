@@ -31,6 +31,14 @@ def write_summary_json(output_path, summary):
     )
 
 
+def print_summary(summary):
+    print("Document Intake Summary")
+    print("-----------------------")
+    print(f"File name: {summary['file_name']}")
+    print(f"Line count: {summary['line_count']}")
+    print(f"Word count: {summary['word_count']}")
+    print(f"Character count: {summary['character_count']}")
+
 def main():
     script_path = Path(__file__).resolve()
     project_root = script_path.parent.parent
@@ -54,12 +62,7 @@ def main():
 
     write_summary_json(output_path, summary)
 
-    print("Document Intake Summary")
-    print("-----------------------")
-    print(f"File name: {summary['file_name']}")
-    print(f"Line count: {summary['line_count']}")
-    print(f"Word count: {summary['word_count']}")
-    print(f"Character count: {summary['character_count']}")
+    print_summary(summary)
 
 
 if __name__ == "__main__":

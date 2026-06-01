@@ -31,32 +31,36 @@ def write_summary_json(output_path, summary):
     )
 
 
-script_path = Path(__file__).resolve()
-project_root = script_path.parent.parent
+def main():
+    script_path = Path(__file__).resolve()
+    project_root = script_path.parent.parent
 
-if len(sys.argv) > 1:
-    file_path = project_root / sys.argv[1]
-else:
-    file_path = project_root / "data" / "sample_document.txt"
+    if len(sys.argv) > 1:
+        file_path = project_root / sys.argv[1]
+    else:
+        file_path = project_root / "data" / "sample_document.txt"
 
-if not file_path.exists():
+    if not file_path.exists():
+        print("Document Intake Summary")
+        print("-----------------------")
+        print(f"Error: Could not find file: {file_path}")
+        raise SystemExit(1)
+
+    text = file_path.read_text(encoding="utf-8")
+
+    summary = build_summary(file_path.name, text)
+
+    output_path = project_root / "outputs" / "intake_summary.json"
+
+    write_summary_json(output_path, summary)
+
     print("Document Intake Summary")
     print("-----------------------")
-    print(f"Error: Could not find file: {file_path}")
-    raise SystemExit(1)
-
-text = file_path.read_text(encoding="utf-8")
-
-summary = build_summary(file_path.name, text)
-
-output_path = project_root / "outputs" / "intake_summary.json"
-
-write_summary_json(output_path, summary)
+    print(f"File name: {summary['file_name']}")
+    print(f"Line count: {summary['line_count']}")
+    print(f"Word count: {summary['word_count']}")
+    print(f"Character count: {summary['character_count']}")
 
 
-print("Document Intake Summary")
-print("-----------------------")
-print(f"File name: {summary['file_name']}")
-print(f"Line count: {summary['line_count']}")
-print(f"Word count: {summary['word_count']}")
-print(f"Character count: {summary['character_count']}")
+if __name__ == "__main__":
+    main()

@@ -2,6 +2,34 @@ import json
 from pathlib import Path
 
 
+def count_lines(text):
+    return len(text.splitlines())
+
+
+def count_words(text):
+    return len(text.split())
+
+
+def count_characters(text):
+    return len(text)
+
+
+def build_summary(file_name, text):
+    return {
+        "file_name": file_name,
+        "line_count": count_lines(text),
+        "word_count": count_words(text),
+        "character_count": count_characters(text),
+    }
+
+
+def write_summary_json(output_path, summary):
+    output_path.write_text(
+        json.dumps(summary, indent=2),
+        encoding="utf-8",
+    )
+
+
 script_path = Path(__file__).resolve()
 project_root = script_path.parent.parent
 file_path = project_root / "data" / "sample_document.txt"
@@ -14,27 +42,16 @@ if not file_path.exists():
 
 text = file_path.read_text(encoding="utf-8")
 
-line_count = len(text.splitlines())
-word_count = len(text.split())
-character_count = len(text)
-
-summary = {
-    "file_name": file_path.name,
-    "line_count": line_count,
-    "word_count": word_count,
-    "character_count": character_count
-}
+summary = build_summary(file_path.name, text)
 
 output_path = project_root / "outputs" / "intake_summary.json"
 
-output_path.write_text(
-    json.dumps(summary, indent=2),
-    encoding="utf-8",
-)
+write_summary_json(output_path, summary)
+
 
 print("Document Intake Summary")
 print("-----------------------")
-print(f"File name: {file_path.name}")
-print(f"Line count: {line_count}")
-print(f"Word count: {word_count}")
-print(f"Character count: {character_count}")
+print(f"File name: {summary['file_name']}")
+print(f"Line count: {summary['line_count']}")
+print(f"Word count: {summary['word_count']}")
+print(f"Character count: {summary['character_count']}")

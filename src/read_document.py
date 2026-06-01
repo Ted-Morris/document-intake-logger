@@ -1,4 +1,5 @@
 import json
+import sys
 from pathlib import Path
 
 
@@ -32,7 +33,11 @@ def write_summary_json(output_path, summary):
 
 script_path = Path(__file__).resolve()
 project_root = script_path.parent.parent
-file_path = project_root / "data" / "sample_document.txt"
+
+if len(sys.argv) > 1:
+    file_path = project_root / sys.argv[1]
+else:
+    file_path = project_root / "data" / "sample_document.txt"
 
 if not file_path.exists():
     print("Document Intake Summary")

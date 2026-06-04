@@ -7,7 +7,6 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 SUMMARY_PATH = PROJECT_ROOT / "outputs" / "intake_summary.json"
 
 
-
 EXPECTED_SUMMARY = {
     "file_name": "sample_document.txt",
     "line_count": 4,

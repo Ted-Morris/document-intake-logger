@@ -13,6 +13,7 @@ def run_step(step_name, command):
     subprocess.run(command, cwd=PROJECT_ROOT, check=True)
 
 
+# Each validation step has a display name and the command the runner executes.
 validation_steps = [
     (
         "Generate alternate document summary",

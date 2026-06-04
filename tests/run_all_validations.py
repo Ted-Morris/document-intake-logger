@@ -41,4 +41,4 @@ for step_name, command in validation_steps:
     run_step(step_name, command)
 
 print()
-print("PASS: all validations completed successfully.")
+print(f"PASS: {len(validation_steps)} validation steps completed successfully.")

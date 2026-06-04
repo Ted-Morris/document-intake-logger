@@ -4,6 +4,7 @@ from pathlib import Path
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
+READ_DOCUMENT_SCRIPT = "src/read_document.py"
 
 
 def run_step(step_name, command):
@@ -17,7 +18,7 @@ def run_step(step_name, command):
 validation_steps = [
     (
         "Generate alternate document summary",
-        [sys.executable, "src/read_document.py", "data/another_document.txt"],
+        [sys.executable, READ_DOCUMENT_SCRIPT, "data/another_document.txt"],
     ),
     (
         "Validate alternate document summary",
@@ -25,7 +26,7 @@ validation_steps = [
     ),
     (
         "Restore default sample document summary",
-        [sys.executable, "src/read_document.py"],
+        [sys.executable, READ_DOCUMENT_SCRIPT],
     ),
     (
         "Validate default sample document summary",

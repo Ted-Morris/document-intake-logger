@@ -31,9 +31,13 @@ def write_summary_json(output_path, summary):
     )
 
 
-def print_summary(summary):
+def print_summary_header():
     print("Document Intake Summary")
     print("-----------------------")
+
+
+def print_summary(summary):
+    print_summary_header()
     print(f"File name: {summary['file_name']}")
     print(f"Line count: {summary['line_count']}")
     print(f"Word count: {summary['word_count']}")
@@ -54,8 +58,7 @@ def main():
     file_path = get_document_path(project_root, sys.argv)
 
     if not file_path.exists():
-        print("Document Intake Summary")
-        print("-----------------------")
+        print_summary_header()
         print(f"Error: Could not find file: {file_path}")
         raise SystemExit(1)
 

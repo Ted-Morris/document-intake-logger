@@ -36,6 +36,10 @@ validation_steps = [
         "Validate document path selection",
         [sys.executable, "tests/validate_document_path_selection.py"],
     ),
+    (
+        "Validate missing-file error handling",
+        [sys.executable, "tests/validate_missing_file_error.py"],
+    ),
 ]
 
 

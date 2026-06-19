@@ -21,8 +21,9 @@ It also writes the intake summary to a JSON file so the output can be validated 
 document-intake-logger/
 |-- data/
 |   |-- sample_document.txt
-|   `-- another_document.txt
-|-- output/
+|   |-- another_document.txt
+|   `-- empty_document.txt
+|-- outputs/
 |   `-- intake_summary.json
 |-- src/
 |   `-- read_document.py
@@ -30,9 +31,12 @@ document-intake-logger/
 |   |-- run_all_validations.py
 |   |-- validate_another_document_summary.py
 |   |-- validate_document_path_selection.py
-|   `-- validate_intake_summary.py
+|   |-- validate_intake_summary.py
+|   |-- validate_missing_file_error.py
+|   `-- validate_empty_file.py
 |-- .gitignore
-`-- README.md
+|-- README.md
+`-- LICENSE
 ```
 
 ## How to use the virtual environment
@@ -70,8 +74,10 @@ python .\src\read_document.py .\data\another_document.txt
 The script prints the document summary in the terminal and writes the JSON summary to:
 
 ```text
-output/intake_summary.json
+outputs/intake_summary.json
 ```
+
+A full validation run leaves outputs/intake_summary.json at the default sample values. Interrupting a run partway can leave it in a non-default state; rerun to reset.
 
 ## How to run all validations
 

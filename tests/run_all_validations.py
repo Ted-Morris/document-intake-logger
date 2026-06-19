@@ -40,6 +40,10 @@ validation_steps = [
         "Validate missing-file error handling",
         [sys.executable, "tests/validate_missing_file_error.py"],
     ),
+    (
+        "Validate empty-file handling",
+        [sys.executable, "tests/validate_empty_file.py"],
+    ),
 ]
 
 
